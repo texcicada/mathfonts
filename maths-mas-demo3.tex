@@ -1,0 +1,429 @@
+\documentclass[12pt]{article}
+\usepackage[table]{xcolor}
+\pagecolor{red!3}
+\usepackage{graphicx}
+%\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Noto Serif}
+\setmathfont{XITS Math}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ruby}
+\usepackage{abstract}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[fileext=cmt,placement=b]{Comment}
+\setcounter{bottomnumber}{3}% max bottom floats per page
+\newcommand{\comment}[1]{\begin{Comment}\normalfont\footnotesize\parindent=\bibindent #1\end{Comment}}
+
+\newcommand\rulesep{\rule{0.4\textwidth}{.4pt}}
+\newcommand\sectionsep{\hfill ----oooOooo---- \hfill\ }
+
+%------------------
+\long\gdef\myabstracttext{This document is a sampler of the mathematical alphabets available in the \textsc{MAS}, the Mathematical Alphanumeric Symbols (including some Letterlike Symbols) code block of Unicode.
+\par The alphabets are presented as a group by font to show the overall font style and coverage, and then, for each alphabet, a comparison of fonts is provided.
+\par\bigskip\hfill \rulesep\hfill\ }
+%------------------
+\newcommand\ack{{\noindent *{\small\textsc{Acknowledgements}: }{\scriptsize All \LaTeX\  coding inspiration in this document derives ultimately from hundreds of contributions on the \TeX\ StackExchange site, and from package authors and maintainers over the decades.}}}
+
+%------------------------------------------
+%\title{A Sampler of Mathematical Alphanumeric Symbols using Unicode Fonts}
+%\author{}
+%\date{}
+
+\newcommand{\defaultrubysep}{0.25ex}
+\renewcommand{\rubysep}{\defaultrubysep}
+
+\newfontface\fsemi{Noto Serif JP}
+\title{A Sampler \\ of \\ Mathematical Alphanumeric Symbols \\ using \\ Unicode Fonts\\\ \normalsize \\ \rulesep}
+\author{{\fsemi \ruby{\textcolor{brown!75!green}{\Huge 蝉}
+}{せみ}}\\ \small `Cicada'}
+\date{\small 05-Jul-20\\ \ \\ \rulesep}
+%------------------
+
+
+%================================= Font name, and font switch
+\newcounter{mmdmfontcount}
+\newcommand\mmdsetfont[1]{% 1=fontname
+\stepcounter{mmdmfontcount}
+\expandafter\newcommand\csname mmdmfname\themmdmfontcount\endcsname{#1}
+\expandafter\newfontface\csname xm\themmdmfontcount\endcsname{\csname mmdmfname\themmdmfontcount\endcsname}
+}
+
+\setcounter{mmdmfontcount}{0}
+\newcommand\mmdaddmfont[1]{% 1=fontname
+\mmdsetfont{#1}%
+}
+
+
+%================================= The fonts
+\mmdaddmfont{XITS Math}
+\mmdaddmfont{Asana Math}
+\mmdaddmfont{Cambria Math}
+\mmdaddmfont{DejaVu Math}
+\mmdaddmfont{FreeSerif}
+\mmdaddmfont{Fira Math}
+\mmdaddmfont{\detokenize{Garamond-Math}}
+\mmdaddmfont{GFS Neohellenic Math}
+\mmdaddmfont{Latin Modern Math}
+\mmdaddmfont{Libertinus Math}
+\mmdaddmfont{Neo Euler}
+\mmdaddmfont{Noto Sans Symbols}
+\mmdaddmfont{Quivira}
+\mmdaddmfont{STIX Two Math}
+\mmdaddmfont{STIXGeneral}
+\mmdaddmfont{Symbola}
+\mmdaddmfont{TeX Gyre Bonum Math}
+\mmdaddmfont{TeX Gyre DejaVu Math}
+\mmdaddmfont{TeX Gyre Pagella Math}
+\mmdaddmfont{TeX Gyre Schola Math}
+\mmdaddmfont{TeX Gyre Termes Math}
+
+
+
+%---------------------------------------- Print a range of characters
+\newcommand\scanalpha[2]{%
+\count255 = #1
+\loop
+\char\number\count255
+\ifnum\count255 < #2
+\advance\count255 by 1
+\repeat
+}
+%
+%================================= MAS counter
+\newcounter{macounter}
+\newcommand\masc{%
+\refstepcounter{macounter}%
+\tikz[baseline=-4pt] \node [circle,draw,radius=0.45ex,inner sep=2pt] (a\themacounter){\rmfamily\tiny\themacounter}; }
+%
+%\newcommand\scanalphab[3]{%
+%\label{\labelprefix#3}
+%\count255 = #1
+%\loop
+%\char\number\count255
+%\ifnum\count255 < #2
+%\advance\count255 by 1
+%\repeat
+%}
+%
+%\newcommand\labelprefix{}
+
+
+%====================================== Alphabet glyph codepoint ranges
+\expandafter\newcommand\csname mas1\endcsname{\scanalpha{119808}{119833}}
+\expandafter\newcommand\csname mas2\endcsname{\scanalpha{119834}{119859}}
+\expandafter\newcommand\csname mas3\endcsname{\scanalpha{119860}{119885}}
+\expandafter\newcommand\csname mas4\endcsname{\scanalpha{119886}{119892}%
+{\scanalpha{8462}{8462}}%
+\scanalpha{119894}{119911}%
+{\scanalpha{120484}{120485}}}
+\expandafter\newcommand\csname mas5\endcsname{\scanalpha{119912}{119937}}
+\expandafter\newcommand\csname mas6\endcsname{\scanalpha{119938}{119963}}
+\expandafter\newcommand\csname mas7\endcsname{\scanalpha{119964}{119964}%
+{\scanalpha{8492}{8492}}%119965 b
+\scanalpha{119966}{119967}%
+{\scanalpha{8496}{8496}}%119968 e
+{\scanalpha{8497}{8497}}%119969 f
+\scanalpha{119970}{119970}%
+{\scanalpha{8459}{8459}}%119971 h
+{\scanalpha{8464}{8464}}%119972 i
+\scanalpha{119973}{119974}%
+{\scanalpha{8466}{8466}}%119975 l
+{\scanalpha{8499}{8499}}%119976 m
+\scanalpha{119977}{119980}%
+{\scanalpha{8475}{8475}}%119981 r
+\scanalpha{119982}{119989}}
+\expandafter\newcommand\csname mas8\endcsname{\scanalpha{119990}{119993}%
+{\scanalpha{8495}{8495}}%119994 e
+\scanalpha{119995}{119995}%
+{\scanalpha{8458}{8458}}%119996 g
+\scanalpha{119997}{120003}%
+{\scanalpha{8500}{8500}}%120004 o
+\scanalpha{120005}{120015}}
+\expandafter\newcommand\csname mas9\endcsname{\scanalpha{120016}{120041}}
+\expandafter\newcommand\csname mas10\endcsname{\scanalpha{120042}{120067}}
+\expandafter\newcommand\csname mas11\endcsname{\scanalpha{120068}{120069}%
+{\scanalpha{8493}{8493}}%120070 c
+\scanalpha{120071}{120074}%
+{\scanalpha{8460}{8460}}%120075 h
+{\scanalpha{8465}{8465}}%120076 i
+\scanalpha{120077}{120084}%
+{\scanalpha{8476}{8476}}%120085 r
+\scanalpha{120086}{120092}%
+{\scanalpha{8488}{8488}}}%120093 z
+\expandafter\newcommand\csname mas12\endcsname{\scanalpha{120094}{120119}}
+\expandafter\newcommand\csname mas13\endcsname{\scanalpha{120120}{120121}%
+{\scanalpha{8450}{8450}}%120122 c
+\scanalpha{120123}{120126}%
+{\scanalpha{8461}{8461}}%120127 h
+\scanalpha{120128}{120132}%
+{\scanalpha{8469}{8469}}%120133 n
+\scanalpha{120134}{120134}%
+{\scanalpha{8473}{8473}}%120135 p
+{\scanalpha{8474}{8474}}%120136 q
+{\scanalpha{8477}{8477}}%120137 r
+\scanalpha{120138}{120144}%
+{\scanalpha{8484}{8484}}}%{120145} z
+\expandafter\newcommand\csname mas14\endcsname{\scanalpha{120146}{120171}}
+\expandafter\newcommand\csname mas15\endcsname{\scanalpha{120172}{120197}}
+\expandafter\newcommand\csname mas16\endcsname{\scanalpha{120198}{120223}}
+\expandafter\newcommand\csname mas17\endcsname{\scanalpha{120224}{120249}}
+\expandafter\newcommand\csname mas18\endcsname{\scanalpha{120250}{120275}}
+\expandafter\newcommand\csname mas19\endcsname{\scanalpha{120276}{120301}}
+\expandafter\newcommand\csname mas20\endcsname{\scanalpha{120302}{120327}}
+\expandafter\newcommand\csname mas21\endcsname{\scanalpha{120328}{120353}}
+\expandafter\newcommand\csname mas22\endcsname{\scanalpha{120354}{120379}}
+\expandafter\newcommand\csname mas23\endcsname{\scanalpha{120380}{120405}}
+\expandafter\newcommand\csname mas24\endcsname{\scanalpha{120406}{120431}}
+\expandafter\newcommand\csname mas25\endcsname{\scanalpha{120432}{120457}}
+\expandafter\newcommand\csname mas26\endcsname{\scanalpha{120458}{120483}}\expandafter\newcommand\csname mas27\endcsname{\scanalpha{120488}{120513}%
+\scanalpha{120778}{120778}}
+\expandafter\newcommand\csname mas28\endcsname{\scanalpha{120514}{120545}%
+\scanalpha{120779}{120779}}
+\expandafter\newcommand\csname mas29\endcsname{\scanalpha{120546}{120571}}
+\expandafter\newcommand\csname mas30\endcsname{\scanalpha{120572}{120603}}
+\expandafter\newcommand\csname mas31\endcsname{\scanalpha{120604}{120629}}
+\expandafter\newcommand\csname mas32\endcsname{\scanalpha{120630}{120661}}
+\expandafter\newcommand\csname mas33\endcsname{\scanalpha{120662}{120687}}
+\expandafter\newcommand\csname mas34\endcsname{\scanalpha{120688}{120719}}
+\expandafter\newcommand\csname mas35\endcsname{\scanalpha{120720}{120745}}
+\expandafter\newcommand\csname mas36\endcsname{\scanalpha{120746}{120777}}
+\expandafter\newcommand\csname mas37\endcsname{\scanalpha{120782}{120791}}
+\expandafter\newcommand\csname mas38\endcsname{\scanalpha{120792}{120801}}
+\expandafter\newcommand\csname mas39\endcsname{\scanalpha{120802}{120811}}
+\expandafter\newcommand\csname mas40\endcsname{\scanalpha{120812}{120821}}
+\expandafter\newcommand\csname mas41\endcsname{\scanalpha{120822}{120831}}
+\expandafter\newcommand\csname mas42\endcsname{\scanalpha{8517}{8517}}
+\expandafter\newcommand\csname mas43\endcsname{\scanalpha{8518}{8521}}
+\expandafter\newcommand\csname mas44\endcsname{\scanalpha{8510}{8512}}
+\expandafter\newcommand\csname mas45\endcsname{\scanalpha{8509}{8509}%
+\scanalpha{8508}{8508}}
+
+%========================================= Example
+\newcommand\m[1]{%1=alphabet number
+#1 -- \csname maseg#1\endcsname
+}
+\newcommand\nmm[1]{%
+{\csname xm1\endcsname\color{red}#1}%use the first font, and print as text mode
+}
+
+%================================= Example character, for the alphabet map table
+\expandafter\newcommand\csname maseg1\endcsname{$\mbfC$}
+\expandafter\newcommand\csname maseg2\endcsname{$\mbfc$}
+\expandafter\newcommand\csname maseg3\endcsname{$\mitC$}
+\expandafter\newcommand\csname maseg4\endcsname{$\mitc$}
+\expandafter\newcommand\csname maseg5\endcsname{$\mbfitC$\nmm{𝑪}}
+\expandafter\newcommand\csname maseg6\endcsname{$\mbfitc$\nmm{𝒄}}
+\expandafter\newcommand\csname maseg7\endcsname{$\mscrC$}
+\expandafter\newcommand\csname maseg8\endcsname{$\mscrc$}
+\expandafter\newcommand\csname maseg9\endcsname{$\mbfscrC$}
+\expandafter\newcommand\csname maseg10\endcsname{$\mbfscrc$}
+\expandafter\newcommand\csname maseg11\endcsname{$\mfrakC$}
+\expandafter\newcommand\csname maseg12\endcsname{$\mfrakc$}
+\expandafter\newcommand\csname maseg13\endcsname{$\BbbC$}
+\expandafter\newcommand\csname maseg14\endcsname{$\Bbbc$}
+\expandafter\newcommand\csname maseg15\endcsname{$\mbffrakC$}
+\expandafter\newcommand\csname maseg16\endcsname{$\mbffrakc$}
+\expandafter\newcommand\csname maseg17\endcsname{$\msansC$}
+\expandafter\newcommand\csname maseg18\endcsname{$\msansc$}
+\expandafter\newcommand\csname maseg19\endcsname{$\mbfsansC$}
+\expandafter\newcommand\csname maseg20\endcsname{$\mbfsansc$}
+\expandafter\newcommand\csname maseg21\endcsname{$\mitsansC$\nmm{𝘊}}
+\expandafter\newcommand\csname maseg22\endcsname{$\mitsansc$\nmm{𝘤}}
+\expandafter\newcommand\csname maseg23\endcsname{$\mbfitsansC$\nmm{𝘾}}
+\expandafter\newcommand\csname maseg24\endcsname{$\mbfitsansc$\nmm{𝙘}}
+\expandafter\newcommand\csname maseg25\endcsname{$\mttC$}
+\expandafter\newcommand\csname maseg26\endcsname{$\mttc$}
+\expandafter\newcommand\csname maseg27\endcsname{$\mbfDelta$}
+\expandafter\newcommand\csname maseg28\endcsname{$\mbfdelta$\nmm{𝛅}}
+\expandafter\newcommand\csname maseg29\endcsname{$\mitDelta$\nmm{𝛥}}
+\expandafter\newcommand\csname maseg30\endcsname{$\mitdelta$}
+\expandafter\newcommand\csname maseg31\endcsname{$\mbfitDelta$\nmm{𝜟}}
+\expandafter\newcommand\csname maseg32\endcsname{$\mbfitdelta$}
+\expandafter\newcommand\csname maseg33\endcsname{$\mbfsansDelta$}
+\expandafter\newcommand\csname maseg34\endcsname{$\mbfsansdelta$}
+\expandafter\newcommand\csname maseg35\endcsname{$\mbfitsansDelta$\nmm{𝞓}}
+\expandafter\newcommand\csname maseg36\endcsname{$\mbfitsansdelta$\nmm{𝞭}}
+\expandafter\newcommand\csname maseg37\endcsname{$\mbfnine$}
+\expandafter\newcommand\csname maseg38\endcsname{$\Bbbnine$}
+\expandafter\newcommand\csname maseg39\endcsname{$\msansnine$}
+\expandafter\newcommand\csname maseg40\endcsname{$\mbfsansnine$}
+\expandafter\newcommand\csname maseg41\endcsname{$\mttnine$}
+\expandafter\newcommand\csname maseg42\endcsname{$\mitBbbD$}
+\expandafter\newcommand\csname maseg43\endcsname{$\mitBbbd$}
+\expandafter\newcommand\csname maseg44\endcsname{$\BbbPi$}
+\expandafter\newcommand\csname maseg45\endcsname{$\Bbbpi$}
+
+
+
+%========================================= Description
+
+\expandafter\newcommand\csname masde1\endcsname{Serif -- bold -- Latin -- upper}
+\expandafter\newcommand\csname masde2\endcsname{Serif -- bold -- Latin -- lower}
+\expandafter\newcommand\csname masde3\endcsname{Serif -- italic -- Latin -- upper}
+\expandafter\newcommand\csname masde4\endcsname{Serif -- italic -- Latin -- lower}
+\expandafter\newcommand\csname masde5\endcsname{Serif -- bold-italic -- Latin -- upper}
+\expandafter\newcommand\csname masde6\endcsname{Serif -- bold-italic -- Latin -- lower}
+\expandafter\newcommand\csname masde7\endcsname{Script -- Latin -- upper}
+\expandafter\newcommand\csname masde8\endcsname{Script-- Latin -- lower}
+\expandafter\newcommand\csname masde9\endcsname{Script -- bold -- Latin -- upper}
+\expandafter\newcommand\csname masde10\endcsname{Script -- bold -- Latin -- lower}
+\expandafter\newcommand\csname masde11\endcsname{Black-letter -- Latin -- upper}
+\expandafter\newcommand\csname masde12\endcsname{Black-letter -- Latin -- lower}
+\expandafter\newcommand\csname masde13\endcsname{Double-struck -- Latin -- upper}
+\expandafter\newcommand\csname masde14\endcsname{Double-struck -- Latin -- lower}
+\expandafter\newcommand\csname masde15\endcsname{Black-letter -- bold -- Latin -- upper}
+\expandafter\newcommand\csname masde16\endcsname{Black-letter -- bold -- Latin -- lower}
+\expandafter\newcommand\csname masde17\endcsname{Sans -- Latin -- upper}
+\expandafter\newcommand\csname masde18\endcsname{Sans -- Latin -- lower}
+\expandafter\newcommand\csname masde19\endcsname{Sans -- bold -- Latin -- upper}
+\expandafter\newcommand\csname masde20\endcsname{Sans -- bold -- Latin -- lower}
+\expandafter\newcommand\csname masde21\endcsname{Sans -- italic -- Latin -- upper}
+\expandafter\newcommand\csname masde22\endcsname{Sans -- italic -- Latin -- lower}
+\expandafter\newcommand\csname masde23\endcsname{Sans -- bold-italic -- Latin -- upper}
+\expandafter\newcommand\csname masde24\endcsname{Sans -- bold-italic -- Latin -- lower}
+\expandafter\newcommand\csname masde25\endcsname{Monospaced -- Latin -- upper}
+\expandafter\newcommand\csname masde26\endcsname{Monospaced -- Latin -- lower}
+\expandafter\newcommand\csname masde27\endcsname{Serif -- bold -- Greek -- upper}
+\expandafter\newcommand\csname masde28\endcsname{Serif -- bold -- Greek -- lower}
+\expandafter\newcommand\csname masde29\endcsname{Serif -- italic -- Greek -- upper}
+\expandafter\newcommand\csname masde30\endcsname{Serif -- italic -- Greek -- lower}
+\expandafter\newcommand\csname masde31\endcsname{Serif -- bold-italic -- Greek -- upper}
+\expandafter\newcommand\csname masde32\endcsname{Serif -- bold-italic -- Greek -- lower}
+\expandafter\newcommand\csname masde33\endcsname{Sans -- bold -- Greek -- upper}
+\expandafter\newcommand\csname masde34\endcsname{Sans -- bold -- Greek -- lower}
+\expandafter\newcommand\csname masde35\endcsname{Sans -- bold-italic -- Greek -- upper}
+\expandafter\newcommand\csname masde36\endcsname{Sans -- bold-italic -- Greek -- lower}
+\expandafter\newcommand\csname masde37\endcsname{Serif -- bold -- Digits}
+\expandafter\newcommand\csname masde38\endcsname{Double-struck -- Digits}
+\expandafter\newcommand\csname 	masde39\endcsname{Sans -- Digits}
+\expandafter\newcommand\csname masde40\endcsname{Sans -- bold -- Digits}
+\expandafter\newcommand\csname masde41\endcsname{Monospaced -- Digits}
+\expandafter\newcommand\csname masde42\endcsname{Double-struck -- italic -- Latin -- upper}
+\expandafter\newcommand\csname masde43\endcsname{Double-struck -- italic -- Latin -- lower}
+\expandafter\newcommand\csname masde44\endcsname{Double-struck -- Greek -- upper}
+\expandafter\newcommand\csname masde45\endcsname{Double-struck -- Greek -- lower}
+
+%=========================================
+
+
+
+\newcommand\demoalpha[1]{\csname #1\endcsname}
+
+
+
+%========================================= Cycle through the fonts, then the alphabets
+\newcommand\listallmasallfonts{%
+\foreach \x in {1,...,\themmdmfontcount}{%
+\newpage\rmfamily
+\section{Font -- \csname mmdmfname\x\endcsname}
+\setcounter{macounter}{0}
+{\csname xm\x\endcsname% MAS font
+\foreach \y in {1,...,45}{%
+\par\noindent\masc\csname mas\y\endcsname%
+}%y
+}%font scope
+}%x
+}
+
+
+%================================= For each alphabet, cycle through the fonts
+\newcommand\listmasbyfont{%
+\foreach \y in {1,...,45}{%
+\newpage\rmfamily
+\section{Comparisons -- MAS alphabet \y}
+{\small\csname masde\y\endcsname}\bigskip
+%\setcounter{macounter}{0}
+\foreach \x in {1,...,\themmdmfontcount}{%
+\par\noindent{\small\csname mmdmfname\x\endcsname}
+{\csname xm\x\endcsname% MAS font
+\par\csname mas\y\endcsname\bigskip%
+}%x
+}%font scope
+}%y
+}
+
+
+\usepackage[
+				final=true,
+				bookmarks,
+            colorlinks=true,        
+            allcolors = black,  
+            citecolor=blue, 
+            hyperindex=false,       
+]{hyperref}
+
+
+%=================================
+\begin{document}
+\maketitle
+\begin{abstract}
+\myabstracttext
+\end{abstract}
+%\vfill
+\comment{{\ack}}
+\newpage
+%\newpage
+\tableofcontents
+\bigskip
+\bigskip
+\bigskip
+\sectionsep
+\bigskip
+
+\newpage
+\section{Alphabet Map}
+The \textsc{MAS} alphabets are arbitrarily numbered according to the scheme shown in the table, with examples in math mode.\footnote{With the formats using \texttt{unicode-math} package's default settings for math mode. The un-overridden version, in text mode, is shown in red.} 
+
+For upper and lower case Latin, upper and lower case Greek, and Digits :-- whether serif, sans-serif, monospaced or blackboard; whether italic or upright shape; whether bold or normal weight; whether standard, script or Fraktur style.
+\bigskip
+
+\rowcolors{2}{red!5!blue!15}{blue!5}
+{\small
+\begin{tabular}{lllllllll}
+x     & x        & x      & x & Latn up & Latn low & Gk up & Gk low & Digits \\
+\hline\\
+serif & upright & bold &	         & \m{1}   & \m{2}   & \m{27}	& \m{28}	& \m{37}	\\
+serif & italic    &       &        		& \m{3}   & \m{4}   & \m{29}  & \m{30} &     \\
+serif & italic    & bold &            & \m{5}   & \m{6}   & \m{31}  & \m{32} &     \\
+serif &           &       & script    & \m{7}  & \m{8}   &    &     &     \\
+serif &           & bold & script    & \m{9}   & \m{10}  &    &     &     \\
+serif &           &       & Fraktur  & \m{11} & \m{12}  &    &     &     \\
+serif &           & bold  & Fraktur & \m{15} & \m{16} &    &     &     \\
+bb    &           &       &            & \m{13} & \m{14} & \m{44}  & \m{45}  &   \m{38}  \\
+bb    & italic    &       &            & \m{42} & \m{43} &     &     &      \\
+sans  & upright &      &             & \m{17}   & \m{18} &    &      & \m{39} \\
+sans  & upright & bold &            & \m{19}   & \m{20} & \m{33}   & \m{34}     & \m{40} \\
+sans  & italic    &      &             & \m{21}   & \m{22} &          &       &     \\
+sans  & italic    & bold &            & \m{23}   & \m{24} & \m{35}     &  \m{36}     &     \\
+mono  &          &      &            & \m{25}   & \m{26} &        &         & \m{41}    \\
+\hline\\
+\end{tabular}
+}
+\bigskip
+
+\noindent Aliases:
+\smallskip
+
+\textbf{Black-letter}: Fraktur.
+\smallskip
+
+\textbf{Double-struck}: Blackboard -- emulates writing made with the stick of chalk held sideways, rather than made with the pointy end.
+\smallskip
+
+\textbf{Calligraphic}: script -- emulates hand-writing, from the time when longhand was written in copperplate style and similar.
+\smallskip
+
+\textsc{Note}: All displays are in text mode unless otherwise stated.
+%=================================
+\listallmasallfonts
+
+\listmasbyfont
+
+\bigskip
+\bigskip
+\bigskip
+\sectionsep
+\bigskip
+\end{document}
+
